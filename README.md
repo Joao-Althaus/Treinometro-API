@@ -1,0 +1,1 @@
+# ¯\\\_(ツ)_/¯   AINDA TO FAZENDO A API         
