@@ -15,7 +15,7 @@ export default class Exercicio {
     @PrimaryGeneratedColumn()
     id!:number;
 
-    @Column({ type: 'text' })
+    @Column({ type: 'text', unique: true })
     nome!:string;
 
     @Column({ type: 'text' })

@@ -7,12 +7,12 @@ dotenv.config({ quiet: true });
 const PORT = process.env.PORT ? Number(process.env.PORT) : 3001;
 
 const app = express();
-//app.use(express.json());
+app.use(express.json());
 
 app.get("/health", (req, res) => {
   res.send("API ta funcionando");
 });
 
-//app.use('/', router);
+app.use('/', router);
 
 export default app
