@@ -83,6 +83,7 @@ export class ExercicioController{
         }
     }
 
+    
     static async getById(req:Request, res:Response){
         try{
             const id = Number(req.params.id);

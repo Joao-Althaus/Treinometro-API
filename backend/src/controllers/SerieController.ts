@@ -12,18 +12,18 @@ export class SerieController{
 
     static async create(req:Request, res:Response){
         try {
-            const { exercicioId, treinoId, carga, repeticoes } = req.body;
+            const { exercicio_id, treino_id, carga, repeticoes } = req.body;
 
-            if (!exercicioId || !treinoId || !carga || !repeticoes) {
+            if (!exercicio_id || !treino_id || !carga || !repeticoes) {
                 return res.status(400).json({ message: "Todos os campos são obrigatórios!" });
             }
 
-            const exercicio = await exercicioRepo().findOneBy({ id: exercicioId });
+            const exercicio = await exercicioRepo().findOneBy({ id: exercicio_id });
             if (!exercicio) {
                 return res.status(404).json({ message: "Exercício não encontrado!" });
             }
 
-            const treino = await treinoRepo().findOneBy({ id: treinoId });
+            const treino = await treinoRepo().findOneBy({ id: treino_id });
             if (!treino) {
                 return res.status(404).json({ message: "Treino não encontrado!" });
             }

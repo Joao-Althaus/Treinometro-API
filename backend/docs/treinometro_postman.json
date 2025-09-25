@@ -286,7 +286,7 @@
                 ],
                 "body": {
                 "mode": "raw",
-                "raw": "{\n  \"inicio\": \"2024-01-01\",\n  \"fim\": \"2024-12-31\"\n}"
+                "raw": "{\n  \"inicio\": \"2025-09-01T00:00:00.000Z\",\n  \"fim\": \"2025-09-24T20:59:59.999\"\n}"
                 },
                 "url": {
                 "raw": "{{baseUrl}}/api/treinos/usuario/1/data",

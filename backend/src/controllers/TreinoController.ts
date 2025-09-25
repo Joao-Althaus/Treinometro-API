@@ -15,13 +15,13 @@ export class TreinoController{
 
     static async create(req:Request, res:Response){
         try{
-            const usuarioId = req.body;
+            const usuario_id = Number(req.body.usuario_id);
 
-            if(!usuarioId){
-                return res.status(400).json({ message: "O campo  obrigatórios!" });
+            if(!usuario_id){
+                return res.status(400).json({ message: "O campo usuario_id é obrigatório!" });
             }
 
-            const usuario = await usuarioRepo().findOne({ where: {id: usuarioId}})
+            const usuario = await usuarioRepo().findOne({ where: {id: usuario_id}})
 
             if(!usuario){
                 return res.status(404).json( {message: "Usuário não encontrado!"})
@@ -84,6 +84,7 @@ export class TreinoController{
                 return res.status(404).json({ message: "Treino não encontrado!" });
             }
 
+            return res.status(204).send();
         }catch(error : any){
             console.error(error)
             return res.status(500).json({message: "Erro ao remover treino!"})
@@ -138,7 +139,7 @@ export class TreinoController{
 
     static async getByUserAndDate(req:Request, res:Response){
         try{
-            const usuarioId = Number(req.params.userid);
+            const usuarioId = Number(req.params.usuarioId);
             const { inicio, fim } = req.body;
 
             if (!inicio || !fim) {

@@ -13,10 +13,10 @@ Esta API permite o gerenciamento de usuários, treinos, séries e exercícios, p
 - Endpoints para criar, editar, listar e excluir usuarios.
 
 ```http
-GET     /api/usuarios/       → Lista usuarios
-PATCH    /api/usuarios         → Cria novo usuario
-PUT     /api/usuarios/:id      → Atualiza usuario existente
-DELETE  api/usuario/:id        → Remove usuario
+GET     /api/usuarios/        → Lista usuarios
+PATCH   /api/usuarios         → Cria novo usuario
+PUT     /api/usuarios/:id     → Atualiza usuario existente
+DELETE  /api/usuario/:id      → Remove usuario
 ```
 
 ### Gerenciamento de Treinos
@@ -84,9 +84,9 @@ npm install
 ```env
 DB_HOST=localhost
 DB_PORT=5432
-DB_USERNAME=seu_usuario
-DB_PASSWORD=sua_senha
-DB_NAME=treinometro  # Nome do seu DB
+DB_USERNAME=postgres   # Usuario do DB
+DB_PASSWORD=masterkey  # Senha do DB
+DB_NAME=treinometro    # Nome do seu DB
 
 PORT=3000 #Ou outra de sua preferencia
 NODE_ENV=development
