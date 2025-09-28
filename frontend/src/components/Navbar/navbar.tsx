@@ -16,7 +16,6 @@ export default function Navbar() {
         <ul className="navbar-links">
           <li><Link href="/">Home</Link></li>
           <li><Link href="/treinos">Treinos</Link></li>
-          <li><Link href="/series">Séries</Link></li>
           <li><Link href="/exercicios">Exercícios</Link></li>
           <li><Link href="/usuarios">Usuários</Link></li>
         </ul>

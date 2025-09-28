@@ -1,0 +1,68 @@
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.card {
+  background: #f9f9f9;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.02);
+}
+
+.exerciseName {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.exerciseDescription {
+  margin: 0.5rem 0 1rem;
+  color: #666;
+}
+
+.seriesSection {
+  margin-top: 1rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid #ddd;
+}
+
+.seriesTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.seriesList {
+  list-style: none;
+  padding: 0;
+}
+
+.serieItem {
+  padding: 0.3rem 0;
+  color: #444;
+}
+
+.noSeries {
+  color: #999;
+  font-style: italic;
+}
