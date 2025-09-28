@@ -1,4 +1,5 @@
 // app/layout.tsx
+import Navbar from "@/components/Navbar/navbar";
 import "./globals.css";
 import Footer from "@/components/Footer/footer";
 
@@ -15,6 +16,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Navbar/>
         <main>{children}</main>
         <Footer />   {/* Footer fica aqui, DENTRO do body */}
       </body>

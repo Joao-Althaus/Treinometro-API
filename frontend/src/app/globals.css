@@ -1,11 +1,24 @@
 *{
-  padding: 0px;
-  margin: 0px;
-  box-sizing: border-box;
   font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
 }
+html, body {
+  height: 100%;       /* garante altura cheia */
+  margin: 0;
+  padding: 0;
+}
 
-body{
-  min-height: 100vh;
-  width: 100vw;
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+#__next, /* para Next.js Pages Router */
+.layout { /* se estiver usando App Router com div.layout */
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1; /* cresce e empurra o footer para baixo */
 }

@@ -6,8 +6,10 @@ import styles from "./usuarios.module.css";
 
 interface User {
   id: number;
-  name: string;
+  nome: string;
   email: string;
+  peso: string;
+  altura: string;
 }
 
 export default function UsersPage() {
@@ -16,7 +18,7 @@ export default function UsersPage() {
 
   useEffect(() => {
     fetchUsers()
-      .then((data) => setUsers(data))
+      .then((data) => setUsers(data.Usuarios))
       .catch((err) => console.error("Error fetching users:", err))
       .finally(() => setLoading(false));
   }, []);
@@ -30,16 +32,20 @@ export default function UsersPage() {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Name</th>
+            <th>Nome</th>
             <th>Email</th>
+            <th>Altura</th>
+            <th>Peso</th>
           </tr>
         </thead>
         <tbody>
           {users.map((u) => (
             <tr key={u.id}>
               <td>{u.id}</td>
-              <td>{u.name}</td>
+              <td>{u.nome}</td>
               <td>{u.email}</td>
+              <td>{u.altura}</td>
+              <td>{u.peso} <button>Excluir</button></td>
             </tr>
           ))}
         </tbody>

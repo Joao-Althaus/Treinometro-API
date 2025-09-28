@@ -9,7 +9,7 @@ export default function Navbar() {
       <nav className="navbar-container">
         {}
         <div className="navbar-logo">
-          <h2>Treinometro</h2>
+          <h2>Treinômetro</h2>
         </div>
 
         
