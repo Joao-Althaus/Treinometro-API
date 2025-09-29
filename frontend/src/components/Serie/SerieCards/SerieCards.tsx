@@ -1,6 +1,6 @@
 "use client";
 
-import "../SerieCards/seriecards.css";
+import   "../SerieCards/seriecards.css";
 
 interface Exercício {
   id: number;
@@ -26,15 +26,25 @@ export default function SerieCard({
   onEdit,
   onDelete,
 }: SerieCardProps) {
- return (
+  return (
     <div className="card">
-      <h4>{exercicio.nome}</h4> {/* exibindo o nome do exercício */}
-      <p>
-        <strong>Carga:</strong> {carga} kg
-      </p>
-      <p>
-        <strong>Repetições:</strong> {repeticoes}
-      </p>
+      <div className="exerciseHeader">
+        <h4 className="exerciseName">{exercicio.nome}</h4>
+      </div>
+      
+      
+      <div className="exerciseDetails">
+        <div className="detailItem">
+          <span className="detailLabel">Carga:</span>
+          <span className="detailValue">{carga} kg</span>
+        </div>
+ 
+        <div className="detailItem">
+          <span className="detailLabel">Repetições:</span>
+          <span className="detailValue">{repeticoes}</span>
+        </div>
+      </div>
+
       <div className="cardActions">
         <button onClick={() => onEdit(id)} className="editar">
           Editar

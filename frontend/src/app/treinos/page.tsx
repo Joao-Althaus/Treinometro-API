@@ -1,11 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { createTreino, deleteTreino, fetchTrainings } from "@/services/api";
+import { createTreino, deleteSerie, deleteTreino, fetchTrainings, fetchUsers } from "@/services/api";
 import styles from "./treinos.module.css";
 import SerieForm from "@/components/Form/Serie/SerieForm";
 import SerieList from "@/components/Serie/SerieList/SerieList";
+
 import { Exercicio, Serie, Treino } from "@/types/types";
+import NovoTreinoForm from "@/components/Form/Treino/TreinoForm";
 
 // Extendendo a interface Treino para incluir a propriedade showDetalhes
 interface TreinoComDetalhes extends Treino {
@@ -19,37 +21,67 @@ export default function TrainingsPage() {
   const [treinoAtual, setTreinoAtual] = useState<Treino | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [usuarioId, setUsuarioId] = useState<number | null>(null);
+  const [usuarios, setUsuarios] = useState<any[]>([]);
+  const [showNovoTreinoForm, setShowNovoTreinoForm] = useState(false);
 
-  useEffect(() => {
-    fetchTrainings()
-      .then((response) => {
-        // A API retorna { data: [], total: number, page: number, lastPage: number }
-        if (response && Array.isArray(response.data)) {
-          setTreinos(response.data);
-          // Se houver treinos, pega o usuarioId do primeiro treino
-          if (response.data.length > 0) {
-            setUsuarioId(response.data[0].usuario.id);
-          }
-        } else {
-          console.warn("Formato de resposta inesperado:", response);
-          setTreinos([]);
+ useEffect(() => {
+  fetchTrainings()
+    .then((response) => {
+      // A API retorna { data: [], total: number, page: number, lastPage: number }
+      if (response && Array.isArray(response.data)) {
+        setTreinos(response.data);
+        // Se houver treinos, pega o usuarioId do primeiro treino
+        if (response.data.length > 0) {
+          setUsuarioId(response.data[0].usuario.id);
         }
-      })
-      .catch((err) => {
-        console.error("Erro ao buscar treinos:", err);
-        setError("Erro ao carregar treinos");
+      } else {
+        console.warn("Formato de resposta inesperado:", response);
         setTreinos([]);
-      })
-      .finally(() => setLoading(false));
-  }, []);
+      }
+    })
+    .catch((err) => {
+      console.error("Erro ao buscar treinos:", err);
+      setError("Erro ao carregar treinos");
+      setTreinos([]);
+    })
+    .finally(() => setLoading(false));
 
-  const handleToggleDetalhes = (id: number) => {
-    setTreinos((prev) =>
-      prev.map((t) =>
-        t.id === id ? { ...t, showDetalhes: !t.showDetalhes } : t
-      )
-    );
-  };
+  // Busca de usuários
+  fetchUsers()
+    .then(data => {
+      console.log("Dados retornados da API de usuários:", data);
+      
+      // Extrai o array de Usuarios do objeto de resposta
+      let usuariosArray = [];
+      
+      if (data && Array.isArray(data.Usuarios)) {
+        // Se a resposta tem a propriedade "Usuarios"
+        usuariosArray = data.Usuarios;
+      } else if (Array.isArray(data)) {
+        // Se a resposta já é um array (para outras páginas)
+        usuariosArray = data;
+      } else {
+        console.warn("Formato de resposta inesperado para usuários:", data);
+        usuariosArray = [];
+      }
+      
+      console.log("Usuários extraídos:", usuariosArray);
+      setUsuarios(usuariosArray);
+    })
+    .catch(err => {
+      console.error("Erro ao buscar usuários:", err);
+      setUsuarios([]);
+    });
+}, []); // ← Fecha o useEffect aqui
+
+// MOVE todas as funções para FORA do useEffect
+const handleToggleDetalhes = (id: number) => {
+  setTreinos((prev) =>
+    prev.map((t) =>
+      t.id === id ? { ...t, showDetalhes: !t.showDetalhes } : t
+    )
+  );
+};
 
   const handleDeleteTreino = async (id: number) => {
     if (!confirm("Deseja realmente excluir este treino?")) return;
@@ -72,14 +104,26 @@ export default function TrainingsPage() {
     setTreinoAtual(treino);
   };
 
-  const handleDeleteSerie = (serieId: number, treinoId: number) => {
-    setTreinos((prev) =>
-      prev.map((t) =>
-        t.id === treinoId
-          ? { ...t, series: t.series.filter((s) => s.id !== serieId) }
-          : t
-      )
-    );
+  const handleDeleteSerie = async (serieId: number, treinoId: number) => {
+    if (!confirm("Deseja realmente excluir esta série?")) return;
+    
+    try {
+      // Chama a API para excluir permanentemente
+      await deleteSerie(serieId);
+      
+      // Atualiza o estado local apenas se a API for bem-sucedida
+      setTreinos((prev) =>
+        prev.map((t) =>
+          t.id === treinoId
+            ? { ...t, series: t.series.filter((s) => s.id !== serieId) }
+            : t
+        )
+      );
+      
+    } catch (err) {
+      console.error("Erro ao excluir série:", err);
+      alert("Erro ao excluir série. Tente novamente.");
+    }
   };
 
   const handleSaveSerie = (novaSerie: Serie) => {
@@ -101,17 +145,15 @@ export default function TrainingsPage() {
     setTreinoAtual(null);
   };
 
-  const handleCreateTreino = async () => {
-    
-    const userIdToUse = usuarioId || 14; 
-    
+  const handleCreateTreinoComUsuario = async (usuarioId: number) => {
     try {
-      const novoTreino = await createTreino(userIdToUse);
-      // Adiciona showDetalhes: true para o novo treino
+      const novoTreino = await createTreino(usuarioId);
       setTreinos(prev => [{ ...novoTreino, showDetalhes: true }, ...prev]);
+      setShowNovoTreinoForm(false); // Fecha o modal
     } catch (err) {
       console.error("Erro ao criar treino:", err);
-      alert("Erro ao criar treino. Verifique se o usuário existe.");
+      alert("Erro ao criar treino");
+      throw err; // Re-throw para o form tratar
     }
   };
 
@@ -119,8 +161,6 @@ export default function TrainingsPage() {
     setTreinoAtual(treino);
     setSerieSelecionada(null); // null = modo criação
   };
-
-  if (loading) return <p className={styles.loading}>Carregando treinos...</p>;
   
   if (error) return <p className={styles.error}>{error}</p>;
 
@@ -132,12 +172,12 @@ export default function TrainingsPage() {
       <div className={styles.headerActions}>
         <button 
           className={styles.addButton}
-          onClick={handleCreateTreino}
+          onClick={() => setShowNovoTreinoForm(true)}
         >
           + Novo Treino
         </button>
-        {!usuarioId && (
-          <p className={styles.warning}>Usando usuário padrão para criar treinos</p>
+        {!usuarios.length && (
+          <p className={styles.warning}>Carregando usuários...</p>
         )}
       </div>
 
@@ -162,7 +202,8 @@ export default function TrainingsPage() {
                 <div className={styles.seriesContainer}>
                   {/* Header com botão de nova série */}
                   <div className={styles.seriesHeader}>
-                    <h4>Séries</h4>
+                    <h4>Séries: <span className={styles.seriesCount}>{treino.series.length}</span></h4>
+                    
                     <button 
                       className={styles.addSerieButton}
                       onClick={() => handleAddSerie(treino)}
@@ -196,6 +237,15 @@ export default function TrainingsPage() {
             setSerieSelecionada(null);
             setTreinoAtual(null);
           }}
+        />
+      )}
+
+      {/* Modal para criar novo treino */}
+      {showNovoTreinoForm && (
+        <NovoTreinoForm
+          onSubmit={handleCreateTreinoComUsuario}
+          onCancel={() => setShowNovoTreinoForm(false)}
+          usuariosDisponiveis={usuarios}
         />
       )}
     </div>

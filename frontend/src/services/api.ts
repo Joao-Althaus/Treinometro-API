@@ -83,7 +83,6 @@ export async function createSerie(serieData: {
   return response.serie; // Retorna a série criada
 }
 
-// services/api.ts
 export async function updateSerie(serieId: number, serieData: {
   treinoId: number;
   exercicioId: number;
@@ -103,6 +102,25 @@ export async function updateSerie(serieId: number, serieData: {
   const response = await res.json();
   // Retorna a série atualizada, não o objeto completo da resposta
   return response.serie;
+}
+
+export async function deleteSerie(serieId: number) {
+  const url = `${API_BASE}/api/series/${serieId}`;
+  
+  console.log("Excluindo série:", url);
+  
+  const res = await fetch(url, {
+    method: 'DELETE',
+  });
+  
+  console.log("Status da resposta DELETE série:", res.status);
+  
+  if (!res.ok && res.status !== 204) {
+    const errorText = await res.text();
+    throw new Error(`Failed to delete serie: ${res.status} - ${errorText}`);
+  }
+  
+  console.log("Série excluída com sucesso");
 }
 
 export async function fetchTrainings() {
