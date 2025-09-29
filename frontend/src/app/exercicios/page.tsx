@@ -59,6 +59,7 @@ export default function ExercisesPage() {
         exercises.map((ex) => (
           <div key={ex.id} className={styles.card}>
             <h3>{ex.nome}</h3>
+            <p><strong>Id:</strong>{ex.id}</p>
             <p><strong>Grupo Muscular:</strong> {ex.musculo}</p>
             <p><strong>Descrição:</strong> {ex.descricao}</p>
             <div className={styles.cardActions}>

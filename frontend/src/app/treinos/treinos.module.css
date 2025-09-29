@@ -1,35 +1,225 @@
+/* treinos.module.css */
+
+/* Container principal */
 .container {
   padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
+/* Título da página */
 .title {
   font-size: 2rem;
   margin-bottom: 1.5rem;
-  color: #222;
+  color: #111;
+  text-align: center;
 }
 
-.list {
+/* Header Actions */
+.headerActions {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 1rem;
-  list-style: none;
-  padding: 0;
+  margin-bottom: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
+/* Botão Novo Treino */
+.addButton {
+  display: block;
+  background-color: #3b82f6;
+  color: #fff;
+  font-weight: 700;
+  font-size: 1.1rem;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.addButton:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+.warning {
+  color: #ef4444;
+  font-size: 0.9rem;
+  font-style: italic;
+  margin: 0;
+}
+
+/* Grid de Treinos */
+.treinosGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* Cards de Treino */
 .card {
-  background: #eef6ff;
-  padding: 1rem;
-  border-radius: 12px;
-  border: 1px solid #d0e3ff;
+  background: #fff;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd;
 }
 
-.card h2 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.3rem;
-  color: #004080;
+.card h3 {
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: #111;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 0.5rem;
 }
 
+.card p {
+  margin: 0.5rem 0;
+  color: #111827;
+}
+
+.card strong {
+  color: #111;
+  font-weight: 600;
+}
+
+/* Ações do Card */
+.cardActions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+.cardActions button {
+  flex: 1;
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.cardActions button:first-child {
+  background-color: #ef4444;
+  color: #fff;
+}
+
+.cardActions button:first-child:hover {
+  background-color: #b91c1c;
+  transform: translateY(-2px);
+}
+
+.cardActions button:last-child {
+  background-color: #3b82f6;
+  color: #fff;
+}
+
+.cardActions button:last-child:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+/* Container de Séries */
+.seriesContainer {
+  margin-top: 1.5rem;
+  padding-top: 1.5rem;
+  border-top: 2px solid #ddd;
+}
+
+.seriesHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.seriesHeader h4 {
+  color: #111;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Botão Nova Série */
+.addSerieButton {
+  background-color: #10b981;
+  color: #fff;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.addSerieButton:hover {
+  background-color: #059669;
+  transform: translateY(-2px);
+}
+
+/* Estados de Loading e Vazio */
 .loading {
   text-align: center;
-  color: #666;
+  font-size: 1.2rem;
+  color: #999;
+  margin: 3rem 0;
+}
+
+.error {
+  text-align: center;
+  color: #ef4444;
+  font-size: 1.1rem;
+  margin: 3rem 0;
+  background-color: #fef2f2;
+  padding: 1rem;
+  border-radius: 6px;
+  border: 1px solid #fecaca;
+}
+
+.noData {
+  text-align: center;
+  color: #6b7280;
+  font-size: 1.1rem;
+  margin: 3rem 0;
+  font-style: italic;
+  grid-column: 1 / -1;
+}
+
+/* Responsividade */
+@media (max-width: 900px) {
+  .container {
+    padding: 1rem;
+  }
+  
+  .treinosGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .headerActions {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .seriesHeader {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+  }
+  
+  .seriesHeader h4 {
+    text-align: center;
+  }
+  
+  .cardActions {
+    flex-direction: column;
+  }
 }

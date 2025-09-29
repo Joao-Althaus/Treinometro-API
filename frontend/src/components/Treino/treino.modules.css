@@ -1,0 +1,74 @@
+/* Grid dos treinos */
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+/* Card de treino */
+.card {
+  background-color: #f9fafb;
+  border-radius: 8px;
+  padding: 1.2rem;
+  width: 320px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card h3 {
+  margin-bottom: 0.8rem;
+  font-size: 1.3rem;
+  color: #111827;
+}
+
+.card p {
+  margin: 0.4rem 0;
+  font-size: 0.95rem;
+  color: #374151;
+}
+
+/* Ações do card */
+.cardActions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.verDetalhes {
+  background-color: #3b82f6;
+  color: #fff;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.verDetalhes:hover {
+  background-color: #2563eb;
+}
+
+.excluir {
+  background-color: #ef4444;
+  color: #fff;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.excluir:hover {
+  background-color: #b91c1c;
+}
+
+.noData {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+}

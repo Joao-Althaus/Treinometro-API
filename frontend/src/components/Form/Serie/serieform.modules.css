@@ -1,0 +1,80 @@
+/* serieform.modules.css */
+
+/* Container do formulário */
+.formSerie {
+  background-color: #f9fafb;
+  padding: 1.5rem;
+  border-radius: 8px;
+  max-width: 400px;
+  width: 95%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+/* Labels */
+.formSerie label {
+  font-weight: 500;
+  color: #111827;
+}
+
+/* Inputs e select */
+.formSerie input,
+.formSerie select {
+  width: 100%;
+  padding: 0.6rem 0.8rem;
+  border-radius: 6px;
+  border: 1px solid #d1d5db;
+  background-color: #fff;
+  color: #111827;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.formSerie input:focus,
+.formSerie select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 2px rgba(59,130,246,0.2);
+}
+
+/* Botões */
+.formSerie .buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.formSerie button {
+  padding: 0.6rem 1.2rem;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+/* Botão salvar */
+.formSerie button[type="submit"] {
+  background-color: #3b82f6;
+  color: #fff;
+}
+
+.formSerie button[type="submit"]:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+}
+
+/* Botão cancelar */
+.formSerie button[type="button"] {
+  background-color: #ef4444;
+  color: #fff;
+}
+
+.formSerie button[type="button"]:hover {
+  background-color: #b91c1c;
+  transform: translateY(-2px);
+}
