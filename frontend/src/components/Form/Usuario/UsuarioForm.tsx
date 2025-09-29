@@ -37,10 +37,10 @@ export default function Form({ onUserAdded }: Props) {
       <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
 
       <label>Altura</label>
-      <input type="text" value={altura} onChange={(e) => setAltura(e.target.value)} required />
+      <input type="text" value={altura} onChange={(e) => setAltura(e.target.value)} required  placeholder="Em metros"/>
 
       <label>Peso</label>
-      <input type="text" value={peso} onChange={(e) => setPeso(e.target.value)} required />
+      <input type="text" value={peso} onChange={(e) => setPeso(e.target.value)} required placeholder="Em Kg" />
 
       <button type="submit" className="adicionar">Adicionar</button>
     </form>

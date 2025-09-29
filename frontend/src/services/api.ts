@@ -30,6 +30,24 @@ export async function fetchExercises() {
   return res.json();
 }
 
+export async function createExercise(exercicio: {nome:string; descricao:string; musculo:string}){
+  const res = await fetch(`${API_BASE}/api/exercicios`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(exercicio),
+  });
+  if (!res.ok) throw new Error("Failed to create exercise");
+  return res.json();
+}
+
+export async function deleteExercise(id:number){
+  const res = await fetch(`${API_BASE}/api/exercicios/${id}`, {
+    method: "DELETE",
+  });
+  if (!res.ok) throw new Error("Failed to delete exercise");
+  return;
+}
+
 export async function fetchTrainings() {
   const res = await fetch(`${API_BASE}/api/treinos`);
   if (!res.ok) throw new Error("Failed to fetch trainings");

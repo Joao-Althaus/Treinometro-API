@@ -1,68 +1,113 @@
+/* Container principal da página de exercícios */
 .container {
-  max-width: 900px;
-  margin: 0 auto;
   padding: 2rem;
 }
 
+/* Título da página */
 .title {
   font-size: 2rem;
-  font-weight: bold;
   margin-bottom: 1.5rem;
+  color: #111827;
   text-align: center;
 }
 
-.list {
-  list-style: none;
-  padding: 0;
+/* Container que engloba o form e os cards */
+.content {
+  display: flex;
+  gap: 2rem;              /* Espaçamento entre form e cards */
+  align-items: flex-start; /* Alinha ao topo */
+  flex-wrap: wrap;         /* Permite quebra de linha em telas menores */
 }
 
+/* Formulário */
+.formWrapper {
+  flex: 0 0 300px;         /* largura fixa do form */
+}
+
+/* Container dos cards */
+.cardsContainer {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1.5rem;
+  flex: 1;                  /* ocupa o restante do espaço disponível */
+  margin-top: 0;            /* remove margin-top porque o flex já separa */
+}
+
+/* Card individual */
 .card {
-  background: #f9f9f9;
-  padding: 1.5rem;
-  margin-bottom: 1.5rem;
-  border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-  transition: transform 0.2s ease-in-out;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  padding: 1.2rem;
+  width: 220px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card h3 {
+  margin-bottom: 0.8rem;
+  font-size: 1.2rem;
+  color: #111827;
+}
+
+.card p {
+  margin: 0.4rem 0;
+  font-size: 0.95rem;
+  color: #374151;
+  line-height: 1.4;
+}
+
+.card p strong {
+  font-weight: 600;
+  color: #111827;
 }
 
 .card:hover {
-  transform: scale(1.02);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-.exerciseName {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #333;
-}
-
-.exerciseDescription {
-  margin: 0.5rem 0 1rem;
-  color: #666;
-}
-
-.seriesSection {
+/* Ações do card */
+.cardActions {
+  display: flex;
+  justify-content: space-between;
   margin-top: 1rem;
-  padding-top: 0.5rem;
-  border-top: 1px solid #ddd;
 }
 
-.seriesTitle {
-  font-size: 1.2rem;
-  font-weight: 600;
-  margin-bottom: 0.5rem;
+.editar {
+  background-color: #3b82f6;
+  color: #fff;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-.seriesList {
-  list-style: none;
-  padding: 0;
+.editar:hover {
+  background-color: #2563eb;
 }
 
-.serieItem {
-  padding: 0.3rem 0;
-  color: #444;
+.excluir {
+  background-color: #ef4444;
+  color: #fff;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-.noSeries {
-  color: #999;
-  font-style: italic;
+.excluir:hover {
+  background-color: #b91c1c;
+}
+
+/* Mensagem quando não há exercícios */
+.noData {
+  text-align: center;
+  font-size: 1rem;
+  color: #6b7280;
+  margin-top: 1rem;
 }

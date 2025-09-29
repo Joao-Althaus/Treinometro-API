@@ -1,6 +1,5 @@
 "use client";
-
-import UsuarioForm from "../../components/Form/UsuarioForm"
+import UsuarioForm from "../../components/Form/Usuario/UsuarioForm"
 import { useEffect, useState } from "react";
 import { deleteUser, fetchUsers } from "@/services/api";
 import styles from "./usuarios.module.css";
@@ -68,7 +67,7 @@ export default function UsersPage() {
                 <td>{u.nome}</td>
                 <td>{u.email}</td>
                 <td>{u.altura}</td>
-                <td>{u.peso} <button className="excluir" onClick={() => handleDelete(u.id)}>Excluir</button></td>
+                <td>{u.peso} <button className={styles.excluir} onClick={() => handleDelete(u.id)}>Excluir</button></td>
               </tr>
             ))}
           </tbody>

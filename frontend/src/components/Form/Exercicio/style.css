@@ -1,0 +1,78 @@
+/* Container do formulário */
+.form-exercise {
+  background-color: #f9fafb; /* fundo claro */
+  padding: 2rem;
+  border-radius: 10px;
+  margin-top: 2rem; /* separação da tabela/cards */
+  color: #111827; /* texto escuro */
+  max-width: 500px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Título do formulário */
+.form-exercise h3 {
+  margin-bottom: 1.5rem;
+  font-size: 1.7rem;
+  font-weight: 700;
+  text-align: center;
+  color: #111827;
+}
+
+/* Labels */
+.form-exercise label {
+  display: block;
+  margin-top: 1rem;
+  margin-bottom: 0.3rem;
+  font-weight: 600;
+  color: #374151; /* cinza escuro para melhor contraste */
+}
+
+/* Inputs */
+.form-exercise input,
+.form-exercise textarea {
+  width: 95%;
+  padding: 0.7rem 1rem;
+  border-radius: 8px;
+  border: 1px solid #d1d5db;
+  background-color: #fff;
+  color: #111827;
+  font-size: 1rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin-bottom: 0.5rem;
+}
+
+.form-exercise input:focus,
+.form-exercise textarea:focus {
+  outline: none;
+  border-color: #3b82f6; /* destaque azul */
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+}
+
+/* Textarea */
+.form-exercise textarea {
+  min-height: 100px;
+  resize: vertical; /* permite redimensionar verticalmente */
+}
+
+/* Botão */
+.form-exercise .adicionar {
+  width: 50%;
+  display: block;
+  margin: 2rem auto 0 auto;
+  background-color: #3b82f6; /* azul chamativo */
+  color: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-exercise .adicionar:hover {
+  background-color: #2563eb;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}

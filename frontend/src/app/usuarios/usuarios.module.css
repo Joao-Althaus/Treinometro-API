@@ -113,6 +113,24 @@
   transform: translateY(-2px);
 }
 
+/* Botão de excluir */
+.excluir {
+  background-color: #ef4444; /* vermelho intenso */
+  color: #fff;
+  font-weight: 600;
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s ease;
+  margin-left: 0.5rem; /* espaço do valor do peso */
+}
+
+.excluir:hover {
+  background-color: #b91c1c; /* vermelho escuro */
+  transform: translateY(-2px);
+}
+
 /* ========================== */
 /* Responsividade */
 @media (max-width: 900px) {
