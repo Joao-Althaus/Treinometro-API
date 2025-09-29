@@ -6,6 +6,24 @@ export async function fetchUsers() {
   return res.json();
 }
 
+export async function createUser(user: { nome: string; email: string; altura: number; peso: number; }) {
+  const res = await fetch(`${API_BASE}/api/usuarios`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(user),
+  });
+  if (!res.ok) throw new Error("Failed to create user");
+  return res.json();
+}
+
+export async function deleteUser(id: number) {
+  const res = await fetch(`${API_BASE}/api/usuarios/${id}`, {
+    method: "DELETE",
+  });
+  if (!res.ok) throw new Error("Failed to delete user");
+  return;
+}
+
 export async function fetchExercises() {
   const res = await fetch(`${API_BASE}/api/exercicios`);
   if (!res.ok) throw new Error("Failed to fetch exercises");
